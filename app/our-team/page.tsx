@@ -150,7 +150,7 @@ const welfareOfficers = [
 ]
 
 export default function Members() {
-  const [activeSection, setActiveSection] = useState<"leadership" | "current">("leadership")
+  const [activeSection, setActiveSection] = useState<"leadership" | "current" | "alumni">("leadership")
 
   return (
     <main className="min-h-screen">
@@ -188,12 +188,22 @@ export default function Members() {
                 >
                   CURRENT MEMBERS
                 </button>
+                <button
+                  onClick={() => setActiveSection("alumni")}
+                  className={`block w-full text-left py-2 px-4 rounded-md transition-colors ${
+                    activeSection === "alumni" 
+                      ? "bg-gray-900 text-white" 
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  ALUMNI
+                </button>
               </nav>
             </div>
 
             {/* Main Content */}
             <div className="md:w-3/4">
-              {activeSection === "leadership" ? (
+              {activeSection === "leadership" && (
                 <>
                   <h2 className="text-3xl md:text-4xl font-bold mb-12 pb-4 border-b">Leadership</h2>
                   
@@ -279,7 +289,9 @@ export default function Members() {
                     </div>
                   )}
                 </>
-              ) : (
+              )}
+
+              {activeSection === "current" && (
                 <>
                   <h2 className="text-3xl md:text-4xl font-bold mb-12 pb-4 border-b">Current Members</h2>
                   
@@ -377,6 +389,16 @@ export default function Members() {
                         </ul>
                       </div>
                     </div>
+                  </div>
+                </>
+              )}
+
+              {activeSection === "alumni" && (
+                <>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-12 pb-4 border-b">Alumni</h2>
+                  <div className="rounded-lg border border-solid border-gray-300 bg-gray-50 p-12 text-center">
+                    <p className="text-xl font-semibold text-gray-600">Coming Soon</p>
+                    
                   </div>
                 </>
               )}
