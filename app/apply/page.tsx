@@ -269,7 +269,20 @@ export default function Apply() {
                     <h3 className="text-xl font-bold mb-4">Position Information</h3>
                     <div className="space-y-4">
                       <div>
-                        <label className="block mb-1 font-medium">What position will you be applying for? *</label>
+                        <label className="block mb-1 font-medium">
+                          What position will you be applying for? *
+                          <span className="ml-1 text-sm font-normal text-gray-500">
+                            
+                            <a
+                              href="https://www.instagram.com/newcastle_investment_fund/#"
+                              target="_blank"
+                              rel="noreferrer"
+                              className="ml-1 underline"
+                            >
+                              View Available Position Descriptions
+                            </a>
+                          </span>
+                        </label>
                         <div className="space-y-2">
                           <div className="flex items-center">
                             <input
@@ -297,17 +310,6 @@ export default function Apply() {
                           <div className="flex items-center">
                             <input
                               type="radio"
-                              id="esgOfficer"
-                              name="position"
-                              value="ESG Officer"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="esgOfficer">ESG Officer</label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
                               id="complianceOfficer"
                               name="position"
                               value="Compliance Officer"
@@ -330,17 +332,6 @@ export default function Apply() {
                           <div className="flex items-center">
                             <input
                               type="radio"
-                              id="welfareOfficer"
-                              name="position"
-                              value="Welfare Officer"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="welfareOfficer">Welfare Officer</label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
                               id="speakerAcquisitionOfficer"
                               name="position"
                               value="Speaker Acquisition Officer"
@@ -348,6 +339,17 @@ export default function Apply() {
                               onChange={(e) => handlePositionChange(e.target.value)}
                             />
                             <label htmlFor="speakerAcquisitionOfficer">Speaker Acquisition Officer</label>
+                          </div>
+                          <div className="flex items-center">
+                            <input
+                              type="radio"
+                              id="digitalInfrastructureOfficer"
+                              name="position"
+                              value="Digital Infrastructure Officer"
+                              className="mr-2"
+                              onChange={(e) => handlePositionChange(e.target.value)}
+                            />
+                            <label htmlFor="digitalInfrastructureOfficer">Digital Infrastructure Officer</label>
                           </div>
                           <div className="flex items-center">
                             <input
@@ -360,6 +362,30 @@ export default function Apply() {
                             />
                             <label htmlFor="socialMediaOfficer">Social Media Officer</label>
                           </div>
+                          {/*
+                          <div className="flex items-center">
+                            <input
+                              type="radio"
+                              id="esgOfficer"
+                              name="position"
+                              value="ESG Officer"
+                              className="mr-2"
+                              onChange={(e) => handlePositionChange(e.target.value)}
+                            />
+                            <label htmlFor="esgOfficer">ESG Officer</label>
+                          </div>
+                          <div className="flex items-center">
+                            <input
+                              type="radio"
+                              id="welfareOfficer"
+                              name="position"
+                              value="Welfare Officer"
+                              className="mr-2"
+                              onChange={(e) => handlePositionChange(e.target.value)}
+                            />
+                            <label htmlFor="welfareOfficer">Welfare Officer</label>
+                          </div>
+                          */}
                         </div>
                       </div>
 
