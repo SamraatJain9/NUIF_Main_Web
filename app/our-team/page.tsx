@@ -317,7 +317,7 @@ export default function Members() {
 
                     {/* Right column: Officers */}
                     <div className="space-y-8">
-                      <div>
+                      {/* <div>
                         <h3 className="text-2xl font-bold mb-8">ESG Officers:</h3>
                         <ul className="space-y-2 ml-6">
                           {esgOfficers.map((officer, index) => (
@@ -333,7 +333,7 @@ export default function Members() {
                             </li>
                           ))}
                         </ul>
-                      </div>
+                      </div> */}
 
                       <div>
                         <h3 className="text-2xl font-bold mb-8">Risk Officers:</h3>
