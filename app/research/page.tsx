@@ -50,17 +50,33 @@ type Presentation = {
   dateFormatted: string
 }
 
-type GroupedPresentations = Record<string, Presentation[]>
+type GroupedPresentations = Array<{
+  date: string
+  presentations: Presentation[]
+}>
 
 export default function Research() {
-  const [groupedPresentations, setGroupedPresentations] = useState<GroupedPresentations>({});
+  const [groupedPresentations, setGroupedPresentations] = useState<GroupedPresentations>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/presentations')
       .then(res => res.json())
       .then(data => {
-        setGroupedPresentations(data.grouped);
+        const parseDate = (date: string) => {
+          const [day, month, year] = date.split('/').map(Number);
+          return new Date(year, month - 1, day).getTime();
+        };
+
+        const apiGroupedList = data.groupedList as GroupedPresentations | undefined;
+        const groupedRecord = data.grouped as Record<string, Presentation[]> | undefined;
+
+        const rawGrouped: GroupedPresentations = apiGroupedList ??
+          Object.entries(groupedRecord ?? {}).map(([date, presentations]) => ({ date, presentations }));
+
+        const sortedGrouped = [...rawGrouped].sort((a, b) => parseDate(b.date) - parseDate(a.date));
+
+        setGroupedPresentations(sortedGrouped);
         setLoading(false);
       })
       .catch(error => {
@@ -87,7 +103,7 @@ export default function Research() {
               </div>
             ) : (
               <>
-                {Object.entries(groupedPresentations).map(([date, presentations]) => (
+                {groupedPresentations.map(({ date, presentations }) => (
                   <div key={date} className="mb-16">
                     {/* Date Header */}
                     <div className="mb-8">
