@@ -124,8 +124,8 @@ const analysts = [
   { name: "Max Flanagan", link: "https://www.linkedin.com/in/max-flanagan-085772376/" },
 ]
 
-const esgOfficers = [
-  { name: "Alice Yates", link: "https://www.linkedin.com/in/alice-yates15/" },
+const digitalInfrastructure = [
+  { name: "Samraat Jain", link: "https://www.linkedin.com/in/samraat-jain/" },
 ]
 
 const riskOfficers = [
@@ -317,10 +317,10 @@ export default function Members() {
 
                     {/* Right column: Officers */}
                     <div className="space-y-8">
-                      {/* <div>
-                        <h3 className="text-2xl font-bold mb-8">ESG Officers:</h3>
+                      <div>
+                        <h3 className="text-2xl font-bold mb-8">Digital Infrastructure:</h3>
                         <ul className="space-y-2 ml-6">
-                          {esgOfficers.map((officer, index) => (
+                          {digitalInfrastructure.map((officer, index) => (
                             <li key={index}>
                               <Link 
                                 href={officer.link}
@@ -333,7 +333,7 @@ export default function Members() {
                             </li>
                           ))}
                         </ul>
-                      </div> */}
+                      </div>
 
                       <div>
                         <h3 className="text-2xl font-bold mb-8">Risk Officers:</h3>
