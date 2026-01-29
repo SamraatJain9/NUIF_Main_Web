@@ -1,13 +1,16 @@
 #!/bin/bash
+set -e
 
-# Install Python dependencies
-# echo "Installing Python dependencies..."
-# pip3 install -r requirements.txt
+echo "Setting up Python virtual environment..."
+python3 -m venv .venv
+source .venv/bin/activate
 
-# Generate thumbnails
+echo "Installing Python dependencies..."
+pip install --upgrade pip
+pip install -r requirements.txt
+
 echo "Generating PDF thumbnails..."
-python3 public/presentations/thumbs.py
+python public/presentations/thumbs.py
 
-# Build Next.js
 echo "Building Next.js application..."
 next build
