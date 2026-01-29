@@ -48,6 +48,12 @@ export async function GET() {
         
         // Get company name (everything between team and date)
         const company = parts.slice(1, -1).join(' ');
+
+        let title = company.replaceAll('-', ' ');
+
+        if (withoutExt === 'NUIF_NUIF-Semester-One-Report-2025-26_29-01-2026') {
+          title = 'NUIF Semester One Report 2025/26';
+        }
         
         // Check if PNG thumbnail exists with same filename
         const thumbnailFileName = `${withoutExt}.png`;
@@ -58,7 +64,7 @@ export async function GET() {
           id: withoutExt.toLowerCase().replace(/[^a-z0-9]/g, '-'),
           team: team.replaceAll('-', ' '),
           company: company.replaceAll('-', ' '),
-          title: company.replaceAll('-', ' '),
+          title,
           subtitle: `Investment Analysis by ${team.replaceAll('-', ' ')}`,
           pdfPath: `/presentations/${file}`,
           thumbnailPath: hasThumbnail ? `/presentations/${thumbnailFileName}` : `/presentations/${withoutExt}.png`,
