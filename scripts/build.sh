@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Install Python dependencies
-echo "Installing Python dependencies..."
-pip3 install -r requirements.txt
+# echo "Installing Python dependencies..."
+# pip3 install -r requirements.txt
 
 # Generate thumbnails
 echo "Generating PDF thumbnails..."
