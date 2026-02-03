@@ -125,7 +125,7 @@ const analysts = [
 ]
 
 const digitalInfrastructure = [
-  { name: "Samraat Jain", link: "https://www.linkedin.com/in/samraat-jain/" },
+  { name: "Samraat Jain (Admin)", link: "https://www.linkedin.com/in/samraat-jain/" },
   { name: "James Delin", link: "https://www.linkedin.com/in/james-delin-89b737394/" },
 ]
 
