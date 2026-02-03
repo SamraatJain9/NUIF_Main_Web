@@ -126,6 +126,7 @@ const analysts = [
 
 const digitalInfrastructure = [
   { name: "Samraat Jain", link: "https://www.linkedin.com/in/samraat-jain/" },
+  { name: "James Delin", link: "https://www.linkedin.com/in/james-delin-89b737394/" },
 ]
 
 const riskOfficers = [
