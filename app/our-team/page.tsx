@@ -101,6 +101,47 @@ const headAnalysts: TeamMember[] = [
   },
 ]
 
+const alumniFounders: TeamMember[] = [
+  {
+    id: "fernando-mendoza-alumni",
+    name: "Fernando Mendoza",
+    title: "FUND MANAGER",
+    image: FernandoMendozaPhoto,
+    link: "https://www.linkedin.com/in/fernando-e-mendoza-a83001200/"
+  },
+]
+
+const exHeadAnalysts: TeamMember[] = [
+  {
+    id: "benjamin-moore-alumni",
+    name: "Benjamin Moore",
+    title: "Financials | Team Atlas",
+    image: BenjaminMoorePhoto,
+    link: "https://uk.linkedin.com/in/benjamin-moore-46215b263"
+  },
+  {
+    id: "alexander-telpov-alumni",
+    name: "Alexander Telpov",
+    title: "Financials | Team Mizar",
+    image: AlexanderTelpovPhoto,
+    link: "https://www.linkedin.com/in/a56109232"
+  },
+  {
+    id: "sam-bundy-alumni",
+    name: "Sam Bundy",
+    title: "Industrials | Team Rigel",
+    image: SamBundyPhoto,
+    link: "https://www.linkedin.com/in/samuel-bundy-023592292"
+  },
+  {
+    id: "philip-andreewitch-alumni",
+    name: "Philip Andréewitch",
+    title: " Consumer Staples | Team Vega",
+    image: PhilipAndreewitchPhoto,
+    link: "https://www.linkedin.com/in/philippandreewitch"
+  },
+]
+
 // Current members by role
 const analysts = [
   { name: "Adam Vigh-Vecsey", link: "https://www.linkedin.com/in/adam-vigh-vecsey-b6ab74295/" },
@@ -398,10 +439,79 @@ export default function Members() {
               {activeSection === "alumni" && (
                 <>
                   <h2 className="text-3xl md:text-4xl font-bold mb-12 pb-4 border-b">Alumni</h2>
-                  <div className="rounded-lg border border-solid border-gray-300 bg-gray-50 p-12 text-center">
-                    <p className="text-xl font-semibold text-gray-600">Coming Soon</p>
-                    
-                  </div>
+                  <h3 className="text-2xl font-bold mb-8">Founders</h3>
+                  {alumniFounders.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {alumniFounders.map((member) => (
+                        <Link
+                          href={member.link}
+                          key={member.id}
+                          className="group block text-center"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <div className="mx-auto mb-4 relative w-48 h-48 overflow-hidden rounded-full grayscale hover:grayscale-0 transition-all duration-300">
+                            <Image
+                              src={member.image}
+                              alt={member.name}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 33vw"
+                              style={{ objectFit: "cover" }}
+                              className="group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                          <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-1">
+                            {member.title}
+                          </h4>
+                          <h3 className="text-lg font-semibold text-blue-900">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-gray-500 mt-1">2025/26</p>
+                        </Link>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12 bg-gray-50 rounded-lg">
+                      <p className="text-lg text-gray-500">Founder profiles are being updated.</p>
+                    </div>
+                  )}
+
+                  <h3 className="text-2xl font-bold mt-12 mb-8">Ex-Head Analysts</h3>
+                  {exHeadAnalysts.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {exHeadAnalysts.map((member) => (
+                        <Link
+                          href={member.link}
+                          key={member.id}
+                          className="group block text-center"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <div className="mx-auto mb-4 relative w-48 h-48 overflow-hidden rounded-full grayscale hover:grayscale-0 transition-all duration-300">
+                            <Image
+                              src={member.image}
+                              alt={member.name}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 33vw"
+                              style={{ objectFit: "cover" }}
+                              className="group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                          <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-1">
+                            {member.title}
+                          </h4>
+                          <h3 className="text-lg font-semibold text-blue-900">
+                            {member.name}
+                          </h3>
+                          <p className="text-sm text-gray-500 mt-1">2025/26</p>
+                        </Link>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12 bg-gray-50 rounded-lg">
+                      <p className="text-lg text-gray-500">Ex-Head Analyst profiles are being updated.</p>
+                    </div>
+                  )}
                 </>
               )}
             </div>
