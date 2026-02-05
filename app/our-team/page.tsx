@@ -169,6 +169,7 @@ const digitalInfrastructure = [
   { name: "Samraat Jain (Admin)", link: "https://www.linkedin.com/in/samraat-jain/" },
   { name: "James Delin", link: "https://www.linkedin.com/in/james-delin-89b737394/" },
   { name: "Ryan Duong", link: "https://www.linkedin.com/in/ryan-duong-97b960328/" },
+  { name: "Sarah Rafiepour", link: "https://www.linkedin.com/in/sarahr15/" },
 ]
 
 const riskOfficers = [
