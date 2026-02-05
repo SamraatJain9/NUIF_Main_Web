@@ -13,11 +13,11 @@ function PDFThumbnail({ team, company, thumbnailPath }: { team: string; company:
   
   if (!imageError) {
     return (
-      <div className="relative w-full bg-gray-100 border-b overflow-hidden">
+      <div className="relative w-full aspect-[8.5/11] bg-gray-100 border-b overflow-hidden">
         <img 
           src={thumbnailPath} 
           alt={`${team} - ${company}`}
-          className="w-full h-auto object-contain"
+          className="w-full h-full object-cover"
           onError={() => setImageError(true)}
         />
       </div>
