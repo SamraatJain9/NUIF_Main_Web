@@ -21,6 +21,7 @@ import DenizErkovanPhoto from "@/assets/people/DenizErkovan.jpg"
 import GeorgeChattertonPhoto from "@/assets/people/GeorgeChatterton.jpg"
 import PhilipAndreewitchPhoto from "@/assets/people/PhilipAndréewitch.jpg"
 import SamBundyPhoto from "@/assets/people/SamBundy.jpg"
+import { link } from "fs"
 
 // Team member types
 type TeamMember = {
@@ -170,6 +171,7 @@ const digitalInfrastructure = [
   { name: "James Delin", link: "https://www.linkedin.com/in/james-delin-89b737394/" },
   { name: "Ryan Duong", link: "https://www.linkedin.com/in/ryan-duong-97b960328/" },
   { name: "Sarah Rafiepour", link: "https://www.linkedin.com/in/sarahr15/" },
+  { name: "Shalom Ademuwagun", link: "https://www.linkedin.com/in/shalom-ademuwagun-a7318420a/"}
 ]
 
 const riskOfficers = [
