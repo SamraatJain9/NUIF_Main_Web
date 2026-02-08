@@ -21,6 +21,7 @@ import DenizErkovanPhoto from "@/assets/people/DenizErkovan.jpg"
 import GeorgeChattertonPhoto from "@/assets/people/GeorgeChatterton.jpg"
 import PhilipAndreewitchPhoto from "@/assets/people/PhilipAndréewitch.jpg"
 import SamBundyPhoto from "@/assets/people/SamBundy.jpg"
+import MaxFlanaganPhoto from "@/assets/people/MaxFlanagan.jpg"
 import { link } from "fs"
 
 // Team member types
@@ -41,30 +42,30 @@ const leadership: TeamMember[] = [
     image: OscarPetersPhoto,
     link: "https://www.linkedin.com/in/oscar-peters1/"
   },
-  {
-    id: "fernando-mendoza",
-    name: "Fernando Mendoza",
-    title: "Founder & Fund Manager",
-    image: FernandoMendozaPhoto,
-    link: "https://www.linkedin.com/in/fernando-e-mendoza-a83001200/"
-  },
+  // {
+  //   id: "fernando-mendoza",
+  //   name: "Fernando Mendoza",
+  //   title: "Founder & Fund Manager",
+  //   image: FernandoMendozaPhoto,
+  //   link: "https://www.linkedin.com/in/fernando-e-mendoza-a83001200/"
+  // },
 ]
 
 const headAnalysts: TeamMember[] = [
-  {
-    id: "benjamin-moore",
-    name: "Benjamin Moore",
-    title: "Financials | Team Atlas",
-    image: BenjaminMoorePhoto,
-    link: "https://uk.linkedin.com/in/benjamin-moore-46215b263"
-  },
-  {
-    id: "alexander-telpov",
-    name: "Alexander Telpov",
-    title: "Financials | Team Mizar",
-    image: AlexanderTelpovPhoto,
-    link: "https://www.linkedin.com/in/a56109232"
-  },
+  // {
+  //   id: "benjamin-moore",
+  //   name: "Benjamin Moore",
+  //   title: "Financials | Team Atlas",
+  //   image: BenjaminMoorePhoto,
+  //   link: "https://uk.linkedin.com/in/benjamin-moore-46215b263"
+  // },
+  // {
+  //   id: "alexander-telpov",
+  //   name: "Alexander Telpov",
+  //   title: "Financials | Team Mizar",
+  //   image: AlexanderTelpovPhoto,
+  //   link: "https://www.linkedin.com/in/a56109232"
+  // },
   {
     id: "george-chatterton",
     name: "George Chatterton",
@@ -79,13 +80,13 @@ const headAnalysts: TeamMember[] = [
     image: CharlesCreweReadPhoto,
     link: "https://www.linkedin.com/in/charles-crewe-read-0174552a1"
   },
-  {
-    id: "sam-bundy",
-    name: "Sam Bundy",
-    title: "Industrials | Team Rigel",
-    image: SamBundyPhoto,
-    link: "https://www.linkedin.com/in/samuel-bundy-023592292"
-  },
+  // {
+  //   id: "sam-bundy",
+  //   name: "Sam Bundy",
+  //   title: "Industrials | Team Rigel",
+  //   image: SamBundyPhoto,
+  //   link: "https://www.linkedin.com/in/samuel-bundy-023592292"
+  // },
   {
     id: "deniz-erkovan",
     name: "Deniz Erkovan",
@@ -94,11 +95,11 @@ const headAnalysts: TeamMember[] = [
     link: "https://www.linkedin.com/in/d-erk"
   },
   {
-    id: "philip-andreewitch",
-    name: "Philip Andréewitch",
-    title: " Consumer Staples | Team Vega",
-    image: PhilipAndreewitchPhoto,
-    link: "https://www.linkedin.com/in/philippandreewitch"
+    id: "max-flanagan",
+    name: "Max Flanagan",
+    title: " Technology | Team Bellatrix",
+    image: MaxFlanaganPhoto,
+    link: "https://www.linkedin.com/in/max-flanagan-085772376/"
   },
 ]
 
