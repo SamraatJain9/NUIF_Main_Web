@@ -4,8 +4,7 @@ import { useState, FormEvent, useEffect } from "react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import ParallaxHero from "@/components/parallax-hero"
-import Background from "@/assets/background_5.jpg"
-import Link from "next/link"
+import { applyPageContent } from "@/data/apply"
 
 export default function Apply() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -23,19 +22,7 @@ export default function Apply() {
     }
   }, [])
 
-  const sectors = [
-    "Energy",
-    "Materials",
-    "Industrials",
-    "Utilities",
-    "Healthcare",
-    "Consumer Discretionary",
-    "Communication Services",
-    "Information Technology",
-    "Real Estate",
-    "Consumer Staples",
-    "Financials"
-  ]
+  const sectors = applyPageContent.form.sectors.options
 
   const handleSectorChange = (sector: string) => {
     if (selectedSectors.includes(sector)) {
@@ -67,14 +54,14 @@ export default function Apply() {
 
     // Validate sectors only for Analyst and Head Analyst positions
     if (requiresSectorSelection && selectedSectors.length !== 3) {
-      setError("Please select exactly 3 sectors")
+      setError(applyPageContent.form.errors.sectors)
       setIsSubmitting(false)
       return
     }
 
     const studentId = formData.get("studentId") as string
     if (studentId.length !== 9) {
-      setError("Student ID must be exactly 9 characters long")
+      setError(applyPageContent.form.errors.studentIdLength)
       setIsSubmitting(false)
       return
     }
@@ -113,10 +100,10 @@ export default function Apply() {
           form.reset()
         }, 3000)
       } else {
-        setError(data.error || "An error occurred while submitting your application")
+        setError(data.error || applyPageContent.form.errors.submitGeneric)
       }
     } catch (error) {
-      setError("Failed to submit application. Please try again later.")
+      setError(applyPageContent.form.errors.submitFailed)
     } finally {
       setIsSubmitting(false)
     }
@@ -141,18 +128,17 @@ export default function Apply() {
   // Content to display if user has previously submitted an application
   const SuccessContent = () => (
     <div className="bg-green-50 border border-green-500 rounded-lg p-8 text-center">
-      <h3 className="text-2xl font-bold text-green-800 mb-4">Application Submitted!</h3>
+      <h3 className="text-2xl font-bold text-green-800 mb-4">{applyPageContent.success.title}</h3>
       <p className="text-green-700 text-lg mb-4">
-        Thank you very much for applying to the Newcastle University Student-Led Investment Fund.
-        Our recruiters will review your application and reach out soon.
+        {applyPageContent.success.body}
       </p>
       {applicationCount > 1 && (
         <p className="text-green-600 text-sm">
-          This is your {getOrdinalNumber(applicationCount)} application from this device.
+          {applyPageContent.success.countPrefix} {getOrdinalNumber(applicationCount)} application from this device.
         </p>
       )}
       <p className="text-green-600 text-sm mt-2">
-        The form will reset automatically in a few seconds.
+        {applyPageContent.success.resetNote}
       </p>
     </div>
   )
@@ -166,24 +152,16 @@ export default function Apply() {
     <main className="min-h-screen">
       <Navbar />
 
-      <ParallaxHero image={Background} title="Apply to Join NUIF" />
+      <ParallaxHero image={applyPageContent.hero.image} title={applyPageContent.hero.title} />
 
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Join Our Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">{applyPageContent.introduction.heading}</h2>
 
             <div className="prose prose-lg max-w-none mb-10 text-center">
-              <p>
-                We're looking for passionate students who are interested in finance and investing to join our team.
-                As a member of NUIF, you'll gain hands-on experience in equity research, portfolio management,
-                and financial analysis.
-              </p>
-
-              <p>
-                Whether you're studying finance, economics, business or any other discipline, if you have a
-                keen interest in financial markets and are committed to learning, we'd love to hear from you.
-              </p>
+              <p>{applyPageContent.introduction.paragraphs[0]}</p>
+              <p>{applyPageContent.introduction.paragraphs[1]}</p>
             </div>
 
             {submitted ? (
@@ -199,10 +177,10 @@ export default function Apply() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Personal Information */}
                   <div>
-                    <h3 className="text-xl font-bold mb-4">Personal Information</h3>
+                    <h3 className="text-xl font-bold mb-4">{applyPageContent.form.personal.heading}</h3>
                     <div className="space-y-4">
                       <div>
-                        <label htmlFor="fullName" className="block mb-1 font-medium">Full Name *</label>
+                        <label htmlFor="fullName" className="block mb-1 font-medium">{applyPageContent.form.personal.fullName}</label>
                         <input
                           id="fullName"
                           name="fullName"
@@ -215,7 +193,7 @@ export default function Apply() {
                       <br />
 
                       <div>
-                        <label htmlFor="email" className="block mb-1 font-medium">University Email *</label>
+                        <label htmlFor="email" className="block mb-1 font-medium">{applyPageContent.form.personal.email.label}</label>
                         <input
                           id="email"
                           name="email"
@@ -223,15 +201,17 @@ export default function Apply() {
                           required
                           pattern=".*@newcastle\.ac\.uk$"
                           className="w-full p-2 border border-gray-300 rounded"
-                          placeholder="example@newcastle.ac.uk"
+                          placeholder={applyPageContent.form.personal.email.placeholder}
                         />
-                        <p className="text-sm text-gray-500 mt-1">Must be a Newcastle University email</p>
+                        <p className="text-sm text-gray-500 mt-1">{applyPageContent.form.personal.email.help}</p>
                       </div>
 
                       <br />
 
                       <div>
-                        <label htmlFor="studentId" className="block mb-1 font-medium">University ID Number *</label>
+                        <label htmlFor="studentId" className="block mb-1 font-medium">
+                          {applyPageContent.form.personal.studentId}
+                        </label>
                         <input
                           id="studentId"
                           name="studentId"
@@ -244,19 +224,16 @@ export default function Apply() {
                       <br />
 
                       <div>
-                        <label className="block mb-1 font-medium">What academic year will you be in for 2025/2026? *</label>
+                        <label className="block mb-1 font-medium">{applyPageContent.form.personal.academicYear.label}</label>
                         <select
                           name="academicYear"
                           required
                           className="w-full p-2 border border-gray-300 rounded"
                         >
-                          <option value="">Select your year</option>
-                          <option value="1st year">1st year</option>
-                          <option value="2nd year">2nd year</option>
-                          <option value="3rd year">3rd year</option>
-                          <option value="4th year">4th year</option>
-                          <option value="Masters">Masters</option>
-                          <option value="PhD">PhD</option>
+                          <option value="">{applyPageContent.form.personal.academicYear.placeholder}</option>
+                          {applyPageContent.form.personal.academicYear.options.map((option) => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -266,126 +243,42 @@ export default function Apply() {
 
                   {/* Position Information */}
                   <div>
-                    <h3 className="text-xl font-bold mb-4">Position Information</h3>
+                    <h3 className="text-xl font-bold mb-4">{applyPageContent.form.position.heading}</h3>
                     <div className="space-y-4">
                       <div>
                         <label className="block mb-1 font-medium">
-                          What position will you be applying for? *
+                          {applyPageContent.form.position.label}
                           <span className="ml-1 text-sm font-normal text-gray-500">
                             
                             <a
-                              href="https://www.instagram.com/newcastle_investment_fund/#"
+                              href={applyPageContent.form.position.linkHref}
                               target="_blank"
                               rel="noreferrer"
                               className="ml-1 underline"
                             >
-                              View Available Position Descriptions
+                              {applyPageContent.form.position.linkLabel}
                             </a>
                           </span>
                         </label>
                         <div className="space-y-2">
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              id="headAnalyst"
-                              name="position"
-                              value="Head Analyst"
-                              required
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="headAnalyst">Head Analyst</label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              id="analyst"
-                              name="position"
-                              value="Analyst"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="analyst">Analyst</label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              id="complianceOfficer"
-                              name="position"
-                              value="Compliance Officer"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="complianceOfficer">Compliance Officer</label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              id="riskOfficer"
-                              name="position"
-                              value="Risk Officer"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="riskOfficer">Risk Officer</label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              id="speakerAcquisitionOfficer"
-                              name="position"
-                              value="Speaker Acquisition Officer"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="speakerAcquisitionOfficer">Speaker Acquisition Officer</label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              id="digitalInfrastructureOfficer"
-                              name="position"
-                              value="Digital Infrastructure Officer"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="digitalInfrastructureOfficer">Digital Infrastructure Officer</label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              id="socialMediaOfficer"
-                              name="position"
-                              value="Social Media Officer"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="socialMediaOfficer">Social Media Officer</label>
-                          </div>
-                          {/*
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              id="esgOfficer"
-                              name="position"
-                              value="ESG Officer"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="esgOfficer">ESG Officer</label>
-                          </div>
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              id="welfareOfficer"
-                              name="position"
-                              value="Welfare Officer"
-                              className="mr-2"
-                              onChange={(e) => handlePositionChange(e.target.value)}
-                            />
-                            <label htmlFor="welfareOfficer">Welfare Officer</label>
-                          </div>
-                          */}
+                          {applyPageContent.form.position.options.map((option, index) => {
+                            const id = option.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+
+                            return (
+                              <div key={option} className="flex items-center">
+                                <input
+                                  type="radio"
+                                  id={id}
+                                  name="position"
+                                  value={option}
+                                  required={index === 0}
+                                  className="mr-2"
+                                  onChange={(e) => handlePositionChange(e.target.value)}
+                                />
+                                <label htmlFor={id}>{option}</label>
+                              </div>
+                            )
+                          })}
                         </div>
                       </div>
 
@@ -393,7 +286,7 @@ export default function Apply() {
 
                       <div>
                         <label htmlFor="positionReason" className="block mb-1 font-medium">
-                          Why do you want to be in this position? *
+                          {applyPageContent.form.position.reasonLabel}
                         </label>
                         <textarea
                           id="positionReason"
@@ -415,9 +308,10 @@ export default function Apply() {
                   {/* Sector Preferences */}
                   {(selectedPosition === "" || requiresSectorSelection) && (
                     <div>
-                      <h3 className="text-xl font-bold mb-4">Sector Preferences</h3>
+                      <h3 className="text-xl font-bold mb-4">{applyPageContent.form.sectors.heading}</h3>
                       <p className="mb-2">
-                        Please select exactly 3 sectors you'd like to analyse <strong>(Only for Analysts and Head Analysts)</strong>:
+                        {applyPageContent.form.sectors.description[0]}
+                        <strong>{applyPageContent.form.sectors.description[1]}</strong>
                       </p>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -438,7 +332,7 @@ export default function Apply() {
                         ))}
                       </div>
                       <p className="text-sm text-gray-500 mt-2">
-                        Selected: {selectedSectors.length}/3
+                        {applyPageContent.form.sectors.selectedLabel} {selectedSectors.length}/3
                       </p>
                     </div>
                   )}
@@ -447,10 +341,10 @@ export default function Apply() {
 
                   {/* Motivation */}
                   <div>
-                    <h3 className="text-xl font-bold mb-4">Motivation</h3>
+                    <h3 className="text-xl font-bold mb-4">{applyPageContent.form.motivation.heading}</h3>
                     <div>
                       <label htmlFor="motivation" className="block mb-1 font-medium">
-                        Why do you want to be a part of this fund and what could you contribute? *
+                        {applyPageContent.form.motivation.label}
                       </label>
                       <textarea
                         id="motivation"
@@ -470,9 +364,9 @@ export default function Apply() {
 
                   {/* CV Upload */}
                   <div>
-                    <h3 className="text-xl font-bold mb-4">CV Upload</h3>
+                    <h3 className="text-xl font-bold mb-4">{applyPageContent.form.upload.heading}</h3>
                     <div>
-                      <label htmlFor="cv" className="block mb-1 font-medium">Upload your CV *</label>
+                      <label htmlFor="cv" className="block mb-1 font-medium">{applyPageContent.form.upload.label}</label>
                       <input
                         id="cv"
                         name="cv"
@@ -482,7 +376,7 @@ export default function Apply() {
                         className="w-full p-2 border border-gray-300 rounded"
                       />
                       <p className="text-sm text-gray-500 mt-1">
-                        Accepted formats: PDF, DOC, DOCX. Maximum size: 5MB.
+                        {applyPageContent.form.upload.help}
                       </p>
                     </div>
                   </div>
@@ -497,7 +391,7 @@ export default function Apply() {
                         : "bg-gray-900 hover:bg-gray-800 transition-colors"
                       }`}
                   >
-                    {isSubmitting ? "Submitting..." : "Submit Application"}
+                    {isSubmitting ? applyPageContent.form.submit.submitting : applyPageContent.form.submit.idle}
                   </button>
                 </form>
               </div>
@@ -509,28 +403,15 @@ export default function Apply() {
       <section className="py-20 px-6 bg-gray-100">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">Application Process</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">{applyPageContent.process.heading}</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="text-xl font-bold mb-2 text-gray-900">1. Submit Application</div>
-                <p className="text-gray-700">Complete our online application form and upload your CV</p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="text-xl font-bold mb-2 text-gray-900">2. Interview</div>
-                <p className="text-gray-700">Selected candidates will be invited for an interview</p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="text-xl font-bold mb-2 text-gray-900">3. Bootcamp</div>
-                <p className="text-gray-700">You will be taught equity-research and take an assessment</p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="text-xl font-bold mb-2 text-gray-900">4. Join the Team</div>
-                <p className="text-gray-700">Successful candidates will be welcomed to the NUIF team</p>
-              </div>
+              {applyPageContent.process.steps.map((step) => (
+                <div key={step.title} className="bg-white p-6 rounded-lg shadow-md">
+                  <div className="text-xl font-bold mb-2 text-gray-900">{step.title}</div>
+                  <p className="text-gray-700">{step.body}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
