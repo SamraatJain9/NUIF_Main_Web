@@ -3,7 +3,8 @@ import Footer from "@/components/footer"
 import ParallaxHero from "@/components/parallax-hero"
 import Link from "next/link"
 
-import Background from "@/assets/background_1.jpg"
+//import data
+import {homePageContent} from "@/data/home";
 
 export default function Home() {
   return (
@@ -11,32 +12,28 @@ export default function Home() {
       <Navbar />
 
       <ParallaxHero
-        image={Background}
-        title="Newcastle University Investment Fund"
-        subtitle="Developing future finance professionals through hands-on investment experience"
+        image={homePageContent.hero.image}
+        title={homePageContent.hero.title}
+        subtitle={homePageContent.hero.subtitle}
       />
 
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">Shaping Tomorrow's Financial Leaders</h2>
-            <p className="text-lg md:text-xl mb-12 text-gray-700">
-              The Newcastle University student-led Investment Fund (NUIF) created in 2025, provides students with real-world experience
-              in equity research and long-term investing. Our analysts develop valuable skills that prepare them for
-              competitive roles in the financial services industry.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">{homePageContent.introduction.heading}</h2>
+            <p className="text-lg md:text-xl mb-12 text-gray-700">{homePageContent.introduction.body}</p>
             <div className="flex flex-col md:flex-row justify-center gap-4">
               <Link
-                href="/about"
+                href={homePageContent.ctas.learnMoreHref}
                 className="bg-gray-900 text-white px-8 py-3 rounded-md hover:bg-gray-800 transition-colors"
               >
-                Learn More
+                  {homePageContent.ctas.learnMoreLabel}
               </Link>
               <Link
-                href="/our-team"
+                href={homePageContent.ctas.meetTeamHref}
                 className="bg-white text-gray-900 border border-gray-300 px-8 py-3 rounded-md hover:bg-gray-100 transition-colors"
               >
-                Meet Our Team
+                  {homePageContent.ctas.meetTeamLabel}
               </Link>
             </div>
           </div>
