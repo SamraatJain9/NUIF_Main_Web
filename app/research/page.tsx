@@ -3,9 +3,9 @@
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import ParallaxHero from "@/components/parallax-hero"
-import Background from "@/assets/background_3.jpg"
 import Link from "next/link"
 import { useState, useEffect } from 'react'
+import { researchPageContent } from "@/data/research"
 
 // PDF Thumbnail with minimal fallback
 function PDFThumbnail({ team, company, thumbnailPath }: { team: string; company: string; thumbnailPath: string }) {
@@ -90,8 +90,8 @@ export default function Research() {
       <Navbar />
 
       <ParallaxHero 
-        image={Background}
-        title="Investment Research" 
+        image={researchPageContent.hero.image}
+        title={researchPageContent.hero.title} 
       />
 
       <section className="py-20 px-6">
@@ -138,7 +138,7 @@ export default function Research() {
                               {presentation.subtitle}
                             </p>
                             <div className="mt-4 flex items-center text-blue-900 text-sm font-medium">
-                              <span>View Analysis</span>
+                              <span>{researchPageContent.cta.viewAnalysis}</span>
                               <svg 
                                 className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" 
                                 fill="none" 
