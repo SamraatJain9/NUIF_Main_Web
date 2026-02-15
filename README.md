@@ -23,10 +23,6 @@ In order to test your changes you can run `pnpm dev` and a Next.JS development s
 In order to build the project once you have set it up you can run `pnpm build` and NextJS will build the site creating
 static/dynamic routes where required.
 
-**Languages used:** HTML, CSS, Javascript, Python
-**Frameworks:** React, Next.js, Tailwind
-**Hosting:** Vercel
-
 ## Hosting
 
 The site is hosted using [Vercel](https://vercel.com/), you can link a GitHub repository to host a copy of this site or
